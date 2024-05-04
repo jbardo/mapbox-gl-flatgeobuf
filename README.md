@@ -31,7 +31,7 @@ npm install mapbox-gl-flatgeobuf
 ````
 
 ## API
-This library exposes a single `FlatGeobuf` class 
+This library exposes a single `FlatGeobuf` class
 
 ### Constructor Options
 | Option | Type | Description |
@@ -46,8 +46,8 @@ This library exposes a single `FlatGeobuf` class
 | Option | Type | Default | Description |
 --- | --- | --- | ---
 | `url` | `String` **required** | | The url of the flatgeobuf file eg `https://flatgeobuf.org/test/data/UScounties.fgb`. |
-| `minZoom` | `Number` **required**  | 7 | The zoom level to start requesting tiles. |
 | `idProperty` | `String` **required** | | An id field in the data to help minimise duplicate features being added to the map |
+| `minZoom` | `Number`  | 9 | The zoom level to start requesting tiles. |
 
 
 ### Methods
@@ -68,7 +68,7 @@ It would be nice if disabling/enabling of requests happened automatically but un
     minZoom: 8,
     idProperty: "FIPS",
   });
-    
+
   const fgLyrId = 'fs-fill-lyr'
   map.addLayer({
     'id': fgLyrId,

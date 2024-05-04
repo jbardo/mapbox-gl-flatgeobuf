@@ -9,9 +9,10 @@ export default class FlatGeobuf {
 
     this.sourceId = sourceId
     this._map = map
-    this._flatGeobufOptions = Object.assign(flatGeobufOptions, {
-      minZoom: 9
-    })
+    this._flatGeobufOptions = {
+      minZoom: 9,
+      ...flatGeobufOptions
+    }
     this._options = geojsonSourceOptions ? geojsonSourceOptions : {}
 
     this._fc = this._getBlankFc()
@@ -52,7 +53,7 @@ export default class FlatGeobuf {
   async _getTileData () {
     const z = this._map.getZoom()
     if (z < this._flatGeobufOptions.minZoom) return
-  
+
     const bounds = this._map.getBounds().toArray()
     const primaryTile = tilebelt.bboxToTile([bounds[0][0], bounds[0][1], bounds[1][0], bounds[1][1]])
     const tilesToRequest = []
@@ -84,7 +85,7 @@ export default class FlatGeobuf {
         index--
       } else this._tileIds.set(quadKey, true)
     }
-  
+
     if (tilesToRequest.length === 0) return
     const compiledBbox = mergeBoundingBoxes(tilesToRequest)
     let iter = this._loadData(compiledBbox)
